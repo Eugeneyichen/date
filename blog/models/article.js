@@ -3,12 +3,28 @@ const mongoose = require('mongoose');
 
 //1.定义Schema
 const ArticleSchema = new mongoose.Schema({
-	name:{
+	title:{
 		type:String
 	},
-	order:{
+	intro:{
+		type:String
+	},
+	content:{
+		type:String
+	},
+	user:{
+		type:mongoose.Schema.Types.ObjectId
+	},
+	category:{
+		type:mongoose.Schema.Types.ObjectId
+	},
+	click:{
 		type:Number,
 		default:0
+	},
+	createAt:{
+		type:Date,
+		default:Date.now
 	}
 });
 //2.生成模型Model

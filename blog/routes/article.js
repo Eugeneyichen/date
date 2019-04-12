@@ -1,5 +1,6 @@
 const express = require('express')
 const CategoryModel = require('../models/category.js')
+const ArticleModel = require('../models/article.js')
 const pagination = require('../util/pagination.js')
 const router = express.Router()
 
@@ -16,27 +17,27 @@ router.use((req,res,next)=>{
 router.get("/",(req,res)=>{
 	const options = {
 		page:req.query.page,
-		model:CategoryModel,
+		model:ArticleModel,
 		query:{},
 		projection:'-__v',
-		sort:{order:-1}
+		sort:{_id:-1}
 	}
 	pagination(options)
 	.then(data=>{
-		res.render('admin/category_list',{
+		res.render('admin/article_list',{
 			userInfo:req.userInfo,
-			categories:data.docs,
+			articles:data.docs,
 			page:data.page,
 			list:data.list,
 			pages:data.pages,
-			url:'/category'
+			url:'/article'
 		})		
 	})	
 })
 
-//显示添加分类页面
+//显示添加文章页面
 router.get("/add",(req,res)=>{
-	res.render('admin/category_add_edit',{
+	res.render('admin/article_add',{
 		userInfo:req.userInfo
 	})
 })
