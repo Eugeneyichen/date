@@ -15,7 +15,6 @@ class App extends Component{
 	}
 	handleAdd(){
 		this.setState(preState=>({
-
 			list:[...preState.list,preState.val],
 			val:''
 		}));
@@ -38,8 +37,8 @@ class App extends Component{
 			<div className="App">
 				<Row>
 					<Col span={12}>
-						<Input 
-							onChange={this.handleChange} 
+						<Input
+							onChange={this.handleChange}
 							value={this.state.val}
 						/>
 					</Col>
