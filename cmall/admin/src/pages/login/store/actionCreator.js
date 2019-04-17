@@ -5,40 +5,57 @@
 * @Last Modified time: 2019-04-12 20:09:18
 */
 import * as types from './actionTypes.js'
+
 import axios from 'axios';
-export const getAddItemAction = ()=>{
-	return {
-		type:types.ADD_ITEM
-	}
-}
-export const getChangeItemAction = (payload)=>{
-	return {
-		type:types.CHANGE_ITEM,
-		payload
-	}
-}
-export const getDelItemAction = (payload)=>{
-	return  {
-		type:types.DEL_ITEM,
-		payload
-	}
-}
+import { message } from 'antd';
 
-export const loadInitDataAction = (payload)=>{
+import { request,setUserName } from 'util';
+import { ADMIN_LOGIN } from 'api';
+
+
+const getLoginRequestAction = ()=>{
 	return {
-		type:types.LOAD_DATA,
-		payload
+		type:types.LOGIN_REQUEST
 	}
 }
-
-export const getInitDataAction = ()=>{
+const getLoginDoneAction = ()=>{
+	return {
+		type:types.LOGIN_DONE
+	}
+}
+export const getLoginAction = (values)=>{
 	return (dispatch)=>{
-		axios
-		.get('http://127.0.0.1:3000/')
-		.then(result=>{
-			const action = loadInitDataAction(result.data);
-			dispatch(action)
-		})
+		//1.让登陆按钮处于加载状态
+		//1.1 其实就是需要改变state.login.idFething 为true
+       	//1.2 方法就是派发action
+       	//1.3 dispatch把action派发的store
+       	//1.4 store再把action转交个reducer
+       	//1.5 相当于程序流程走到./reducer.js
+
+       	dispatch(getLoginRequestAction())
+        request({
+            method:'post',
+            url:ADMIN_LOGIN,
+            data:values
+        })	
+        .then(result=>{
+           if(result.code == 0){//登陆成功
+                //把用户名保存到本地
+                setUserName(result.data.username)
+                //跳转到后台首页
+                window.location.href = "/"
+            }else if(result.code == 1){//登录失败
+                message.error(result.message)
+            }
+        })
+         .catch(err=>{
+            console.log(err)
+            message.error('网络请求失败,请稍后再试')
+        })
+        .finally(()=>{
+            //2.让登陆按钮处于活动状态
+            dispatch(getLoginDoneAction())
+        })	
 	}
 }
 

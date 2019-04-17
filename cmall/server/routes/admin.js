@@ -42,6 +42,7 @@ router.post("/login",(req,res)=>{
 	UserModel
 	.findOne({username:body.username,password:hmac(body.password),isAdmin:true})
 	.then((user)=>{
+		console.log(user)
 		if(user){//登录成功
 			 req.session.userInfo = {
 			 	_id:user._id,

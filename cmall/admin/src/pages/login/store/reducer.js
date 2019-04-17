@@ -9,67 +9,18 @@ import { fromJS } from 'immutable'
 import * as types from './actionTypes.js'
 
 const defaultState = fromJS({
-	list:["吃饭","睡觉"],
-	val:'打豆豆'
+	isFetching:false
 })
-//1. reducer是一个函数
-//2. reducer是一个纯函数(固定的输入就有固定的输出)
-//3. reducer的主要作用是负责业务逻辑处理,生成新的state,由store来最终改变
 
 export default (state=defaultState,action)=>{
-
-	if(action.type == types.CHANGE_ITEM){
-		/*
-		不推荐使用
-		state.val = action.payload
-		return state
-		*/
-		
-		//1.copy上一次的state
-		//const newState = JSON.parse(JSON.stringify(state))
-		//2.修改新的state再返回
-		/*
-			 不是纯函数的例子
-			 newState.val = action.payload + Date.now
-			 newState.val = action.payload + Math.random()
-		 */
-		//newState.val = action.payload
-		//return newState;
-		return state.set('val',action.payload)
-	}	
-
-	if(action.type == types.ADD_ITEM){
-		/*
-		const newState = JSON.parse(JSON.stringify(state))
-		newState.list.push(state.val)
-		newState.val = ''
-		return newState
-		*/
-		const list = [...state.get('list')]
-		list.push(state.get('val'))
-		return state.merge({
-			list,
-			val:''
-		})
+	if(action.type == types.LOGIN_REQUEST){
+		//1.发送登录请求前state里面的isFetching改为true并且返回新的数据
+		//2.当数据返回给store时,执行组件mapStateProps方法重新映射数据
+		//3.ui组件中的this.props中数据发生改变，导致ui页面发生改变
+		return state.set('isFetching',true)
 	}
-	if(action.type == types.DEL_ITEM){
-		/*
-		const newState = JSON.parse(JSON.stringify(state))
-		newState.list.splice(action.payload,1)
-		return newState
-		*/
-		const list = [...state.get('list')]
-		list.splice(action.payload,1)
-		return state.set('list',list)
+	if(action.type == types.LOGIN_DONE){
+		return state.set('isFetching',false)
 	}
-	if(action.type == types.LOAD_DATA){
-		/*
-		const newState = JSON.parse(JSON.stringify(state))
-		newState.list = action.payload
-		return newState
-		*/
-		return state.set('list',action.payload)
-	}
-
 	return state;
 }
