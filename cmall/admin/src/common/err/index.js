@@ -14,7 +14,7 @@ class Err extends Component{
 			      type="error"
 			      showIcon
 			    />
-			   <Link to="/">返回首页</Link>
+			   <Link to="/	">返回首页</Link>
         	</div>
         )
     }
