@@ -1,26 +1,18 @@
-/*
-* @Author: TomChen
-* @Date:   2019-04-09 19:29:30
-* @Last Modified by:   TomChen
-* @Last Modified time: 2019-04-12 20:54:27
-*/
-
 import React,{ Component } from 'react'
+import { Route,Switch } from "react-router-dom"
+import ProductSave from './save.js'
+import ProductList from './list.js'
 
-import Layout from 'common/layout'
 
-import './index.css'
-
-class Bars extends Component{
+class Product extends Component{
     render(){
-        return (
-        	<div className= "Bars">
-        		<Layout>
-        			product page
-        		</Layout>
-        	</div>
+        return(
+            <Switch>
+                <Route path="/product/save" component={ProductSave} />
+                <Route path="/product/:pid?" component={ProductList} />
+            </Switch>
         )
     }
 }
 
-export default Bars
+export default Product
