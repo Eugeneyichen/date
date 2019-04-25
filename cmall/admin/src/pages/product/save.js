@@ -1,10 +1,20 @@
 import React,{ Component } from 'react'
 import { connect } from 'react-redux'
 import {
-  Form, Input,Breadcrumb, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete,
+    Form, 
+    Input,
+    Breadcrumb,
+    InputNumber,
+    Row,
+    Col,
+    Button,
 } from 'antd';
 
-const { Option } = Select;
+import CategorySelector from './category-selector.js'
+
+import UploadImage from 'common/Upload-image'
+
+import { UPLOAD_PRODUCT_IMAGE } from 'api'
 
 import { actionCreator } from './store'
 
@@ -57,13 +67,47 @@ class ProductSave extends Component{
                         <Breadcrumb.Item>添加商品</Breadcrumb.Item>
                     </Breadcrumb>
                     <Form {...formItemLayout}>
-                        <Form.Item label="分类名称">
+                        <Form.Item label="商品名称">
                           {getFieldDecorator('name', {
-                            rules: [{ required: true, message: '请输入分类名称!' }],
+                            rules: [{ required: true, message: '请输入商品名称!' }],
                           })(
-                            <Input placeholder="分类名称" style={{width:300}} />
+                            <Input placeholder="商品名称" />
                           )}
-                        </Form.Item>                                            
+                        </Form.Item>
+                        <Form.Item label="商品描述">
+                          {getFieldDecorator('description', {
+                            rules: [{ required: true, message: '请输入商品描述!' }],
+                          })(
+                            <Input placeholder="商品描述" />
+                          )}
+                        </Form.Item> 
+                        <Form.Item label="商品分类">
+                            <CategorySelector getCategoryId={(pid,id)=>{
+                                console.log(pid,id)
+                            }} />
+                        </Form.Item>
+                        <Form.Item label="商品价格">
+                          {getFieldDecorator('price', {
+                            rules: [{ required: true, message: '请输入商品价格!' }],
+                          })(
+                            <InputNumber />
+                          )}
+                        </Form.Item>
+                        <Form.Item label="商品库存">
+                          {getFieldDecorator('stock', {
+                            rules: [{ required: true, message: '请输入商品库存!' }],
+                          })(
+                            <InputNumber />
+                          )}
+                        </Form.Item>
+                        <Form.Item label="商品图片">
+                          <UploadImage 
+                              action={UPLOAD_PRODUCT_IMAGE}
+                              max={3}
+                          />
+                        </Form.Item>
+                        <Form.Item label="商品描述">
+                        </Form.Item>                                        
                         <Form.Item {...tailFormItemLayout}>
                           <Button 
                             type="primary"
