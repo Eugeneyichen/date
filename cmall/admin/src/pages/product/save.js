@@ -11,11 +11,10 @@ import {
 } from 'antd';
 
 import CategorySelector from './category-selector.js'
-
 import UploadImage from 'common/Upload-image'
+import RichEditor from 'common/rich-editor'
 
-import { UPLOAD_PRODUCT_IMAGE } from 'api'
-
+import { UPLOAD_PRODUCT_IMAGE,UPLOAD_PRODUCT_DETAIL_IMAGE } from 'api'
 import { actionCreator } from './store'
 
 import Layout from 'common/layout'
@@ -30,12 +29,17 @@ class ProductSave extends Component{
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
           if (!err) {
-            console.log(values)
+           this.props.handleSave(values)
           }
         });
     }        
     render(){
         const { getFieldDecorator } = this.props.form;
+        const {
+          handleCategoryId,
+          handleImages,
+          handleDetail,
+        } = this.props
         const formItemLayout = {
           labelCol: {
             xs: { span: 24 },
@@ -83,7 +87,7 @@ class ProductSave extends Component{
                         </Form.Item> 
                         <Form.Item label="商品分类">
                             <CategorySelector getCategoryId={(pid,id)=>{
-                                console.log(pid,id)
+                                handleCategoryId(pid,id)
                             }} />
                         </Form.Item>
                         <Form.Item label="商品价格">
@@ -104,9 +108,18 @@ class ProductSave extends Component{
                           <UploadImage 
                               action={UPLOAD_PRODUCT_IMAGE}
                               max={3}
+                              getFileList={(filelist)=>{
+                               handleImages(filelist)
+                              }}
                           />
                         </Form.Item>
                         <Form.Item label="商品描述">
+                          <RichEditor 
+                            url={UPLOAD_PRODUCT_DETAIL_IMAGE}
+                            getRichEditorValue={(value)=>{
+                              handleDetail(value)
+                            }}
+                          />
                         </Form.Item>                                        
                         <Form.Item {...tailFormItemLayout}>
                           <Button 
@@ -132,7 +145,22 @@ const mapStateToProps = (state)=>{
 
 const mapDispatchToProps = (dispatch)=>{
     return {
-  
+      handleCategoryId:(pid,id)=>{
+        const action = actionCreator.getSetCategoryIdAction(pid,id)
+        dispatch(action)
+      },
+      handleImages:(fileList)=>{
+        const action = actionCreator.getSetImagesAction(fileList)
+        dispatch(action)
+      },
+      handleDetail:(value)=>{
+        const action = actionCreator.getSetDetailAction(value)
+        dispatch(action)
+      },
+      handleSave:(values)=>{
+        const action = actionCreator.getSaveAction(values)
+        dispatch(action)
+      }
     }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(WrappedProductSave)

@@ -25,7 +25,9 @@ class UploadImage extends Component{
 	    });
 	}
 	handleChange({ fileList }){
-		this.setState({ fileList })
+		this.setState({ fileList },()=>{
+			this.props.getFileList(fileList.map(file=>file.response).join(','))
+		})
 	}
 	render(){
 		const { previewVisible, previewImage, fileList } = this.state;
