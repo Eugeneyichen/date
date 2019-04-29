@@ -31,13 +31,48 @@ export const getSetDetailAction = (payload)=>{
 		payload
 	}
 }
-export const getSaveAction = (values)=>{
+const setCategoryError=()=>{
+	return {
+		type:types.SET_CATEGORY_ERROR,
+	}
+}
+const setImagesError=()=>{
+	return {
+		type:types.SET_IMAGES_ERROR,
+	}
+}
+const getSaveRequestAction = ()=>{
+	return {
+		type:types.SAVE_REQUEST
+	}
+}
+const getSaveDoneAction = ()=>{
+	return {
+		type:types.SAVE_DONE
+	}
+}
+export const getSaveAction = (err,values)=>{
 	return (dispatch,getState)=>{
 		const state = getState().get('product');
 		const category = state.get('categoryId');
 		const images = state.get('images');
 		const datail = state.get('datail');
-
+		let hasError = false;
+		if(err){
+			hasError = true;
+		}
+		if(!category){
+			dispatch(setCategoryError())
+			hasError = true;
+		}
+		if(!images){
+			dispatch(setImagesError())
+			hasError = true;
+		}
+		if(hasError){
+			return;
+		}
+		dispatch(getSaveRequestAction())
 		request({
 			method:'post',
 			url:SAVE_PRODUCT,
@@ -50,6 +85,9 @@ export const getSaveAction = (values)=>{
 		})
 		.then(result=>{
 			console.log(result)
+		})
+		.finally(()=>{
+			dispatch(getSaveDoneAction())
 		})
 	}	
 }

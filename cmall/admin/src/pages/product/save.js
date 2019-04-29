@@ -28,9 +28,7 @@ class ProductSave extends Component{
     handleSubmit(e){
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
-          if (!err) {
-           this.props.handleSave(values)
-          }
+           this.props.handleSave(err,values)
         });
     }        
     render(){
@@ -39,6 +37,11 @@ class ProductSave extends Component{
           handleCategoryId,
           handleImages,
           handleDetail,
+          categoryIdValidateStatus,
+          categoryIdHelp,
+          imagesValidateStatus,
+          imagesHelp,
+          isSaveFetching,
         } = this.props
         const formItemLayout = {
           labelCol: {
@@ -85,7 +88,12 @@ class ProductSave extends Component{
                             <Input placeholder="商品描述" />
                           )}
                         </Form.Item> 
-                        <Form.Item label="商品分类">
+                        <Form.Item 
+                            label="商品分类"
+                            required={true}
+                            validateStatus={categoryIdValidateStatus}
+                            help={categoryIdHelp}
+                        >
                             <CategorySelector getCategoryId={(pid,id)=>{
                                 handleCategoryId(pid,id)
                             }} />
@@ -104,7 +112,12 @@ class ProductSave extends Component{
                             <InputNumber />
                           )}
                         </Form.Item>
-                        <Form.Item label="商品图片">
+                        <Form.Item 
+                            label="商品图片"
+                            required={true}
+                            validateStatus={imagesValidateStatus}
+                            help={imagesHelp}
+                        >
                           <UploadImage 
                               action={UPLOAD_PRODUCT_IMAGE}
                               max={3}
@@ -125,6 +138,7 @@ class ProductSave extends Component{
                           <Button 
                             type="primary"
                             onClick={this.handleSubmit}
+                            loading={isSaveFetching}
                           >
                             提交
                           </Button>
@@ -139,7 +153,11 @@ const WrappedProductSave = Form.create()(ProductSave);
 
 const mapStateToProps = (state)=>{
     return {  
-        
+        categoryIdValidateStatus:state.get('product').get('categoryIdValidateStatus'),
+        categoryIdHelp:state.get('product').get('categoryIdHelp'),
+        imagesValidateStatus:state.get('product').get('imagesValidateStatus'),
+        imagesHelp:state.get('product').get('imagesHelp'),
+        isSaveFetching:state.get('product').get('isSaveFetching')
     }
 }
 
@@ -157,8 +175,8 @@ const mapDispatchToProps = (dispatch)=>{
         const action = actionCreator.getSetDetailAction(value)
         dispatch(action)
       },
-      handleSave:(values)=>{
-        const action = actionCreator.getSaveAction(values)
+      handleSave:(err,values)=>{
+        const action = actionCreator.getSaveAction(err,values)
         dispatch(action)
       }
     }
