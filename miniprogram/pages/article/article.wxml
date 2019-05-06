@@ -1,0 +1,18 @@
+<view class='container'>
+  <swiper 
+    indicator-dots="true" 
+    indicator-color="#666" 
+    indicator-active-color="#f67"
+    autoplay='true'
+  >
+    <swiper-item>
+      <image src='../../images/swiper/wyc1.jpg'></image>
+    </swiper-item>
+    <swiper-item>
+      <image src='../../images/swiper/wyc2.jpg'></image>
+    </swiper-item>
+    <swiper-item>
+      <image src='../../images/swiper/wyc3.jpg'></image>
+    </swiper-item>
+  </swiper>
+</view>
