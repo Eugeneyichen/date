@@ -1,24 +1,73 @@
+<import src="./article-item-template/article-item-template.wxml" />
 <view class='container'>
   <swiper indicator-dots="true" indicator-color="#666" indicator-active-color="#f67"autoplay='true'>
-    <swiper-item>
-      <image src='../../images/swiper/wyc1.jpg'></image>
-    </swiper-item>
     <swiper-item>
       <image src='../../images/swiper/wyc2.jpg'></image>
     </swiper-item>
     <swiper-item>
       <image src='../../images/swiper/wyc3.jpg'></image>
     </swiper-item>
+    <swiper-item>
+      <image src='../../images/swiper/wyc1.jpg'></image>
+    </swiper-item>
   </swiper>
   <view class='article-wrap'>
+  <!--
     <view class='article-item'>
       <view class='ariticle-head'>
         <image class='article-head-avatar' src='../../images/wyc.jpg'></image>
-        <text class='article-head-data'>2019-05-06</text>
-        <text class='article-title'>我是文章标题</text>
-        <image class='article-img' src='../../images/swiper/wyc2.jpg'></image>
-        <text class='article-desc'>我是描述</text>
+        <text class='article-head-date'>2019-05-06</text>
+      </view>
+      <text class='article-title'>我是文章标题{{title}}</text>
+      <image class='article-img' src='../../images/swiper/wyc2.jpg'></image>
+      <text class='article-desc'>我是描述</text>
+      <view class='article-footer'>
+        <image class='article-footer-icon' src='../../images/icon/star.png'></image>
+        <text class='article-footer-text'>648</text>
+        <image class='article-footer-icon' src='../../images/icon/view.png'></image>
+        <text class='article-footer-text'>670</text>
       </view>
     </view>
+     <view class='article-item'>
+      <view class='ariticle-head'>
+        <image class='article-head-avatar' src='../../images/wyc.jpg'></image>
+        <text class='article-head-date'>2019-05-06</text>
+      </view>
+      <text class='article-title'>我是文章标题</text>
+      <image class='article-img' src='../../images/swiper/wyc1.jpg'></image>
+      <text class='article-desc'>我是描述</text>
+      <view class='article-footer'>
+        <image class='article-footer-icon' src='../../images/icon/star.png'></image>
+        <text class='article-footer-text'>648</text>
+        <image class='article-footer-icon' src='../../images/icon/view.png'></image>
+        <text class='article-footer-text'>670</text>
+      </view>
+    </view>
+    -->
+    <block wx:for='{{articles}}' wx:for-item='article' wx:for-index='idx' wx:key='idx'>
+      <!--
+      <view class='article-item'>
+        <view class='ariticle-head'>
+          <image class='article-head-avatar' src='{{article.avatar}}'></image>
+          <text class='article-head-date'>{{article.date}}</text>
+        </view>
+        <text class='article-title'>{{article.title}}</text>
+        <image class='article-img' src='{{article.img}}'></image>
+        <text class='article-desc'>{{article.desc}}</text>
+        <view class='article-footer'>
+          <image class='article-footer-icon' src='../../images/icon/star.png'></image>
+          <text class='article-footer-text'>{{article.star}}</text>
+          <image class='article-footer-icon' src='../../images/icon/view.png'></image>
+          <text class='article-footer-text'>{{article.view}}</text>
+        </view>
+      </view>
+      -->
+      <!--
+      <template is="articleItem" data="{{article:article}}" />
+      -->
+      <view bindtap='tapArticleItem' data-article-id='{{article.articleId}}'>
+        <template is="articleItem" data="{{...article}}" />
+      </view>
+    </block>
   </view>
 </view>

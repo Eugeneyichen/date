@@ -1,0 +1,6 @@
+<view class='container article-detail'>
+  <view class='focus'>
+  <image class='focus-bg' src='/images/swiper/wyc3.jpg'></image>
+   <image class='focus-music' src='/images/icon/star.png'></image>
+  </view>
+</view>
