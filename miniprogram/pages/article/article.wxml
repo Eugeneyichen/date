@@ -1,10 +1,5 @@
 <view class='container'>
-  <swiper 
-    indicator-dots="true" 
-    indicator-color="#666" 
-    indicator-active-color="#f67"
-    autoplay='true'
-  >
+  <swiper indicator-dots="true" indicator-color="#666" indicator-active-color="#f67"autoplay='true'>
     <swiper-item>
       <image src='../../images/swiper/wyc1.jpg'></image>
     </swiper-item>
@@ -15,4 +10,15 @@
       <image src='../../images/swiper/wyc3.jpg'></image>
     </swiper-item>
   </swiper>
+  <view class='article-wrap'>
+    <view class='article-item'>
+      <view class='ariticle-head'>
+        <image class='article-head-avatar' src='../../images/wyc.jpg'></image>
+        <text class='article-head-data'>2019-05-06</text>
+        <text class='article-title'>我是文章标题</text>
+        <image class='article-img' src='../../images/swiper/wyc2.jpg'></image>
+        <text class='article-desc'>我是描述</text>
+      </view>
+    </view>
+  </view>
 </view>

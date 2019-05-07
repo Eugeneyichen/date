@@ -9,3 +9,25 @@ swiper-item image{
   width: 100%;
   height: 100%;
 }
+.article-wrap{
+  width: 100%;
+}
+.ariticle-head .article-head-avatar{
+  width: 90rpx;
+  height:90rpx;
+  margin: 15rpx;
+  border-radius: 50%;
+}
+.ariticle-head .article-head-data{
+  position:absolute;
+  font-size: 16px;
+  line-height: 70px;
+}
+.ariticle-head .article-title{
+  font-size: 20px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+.ariticle-head .article-img{
+  width: 100%;
+}
