@@ -79,7 +79,7 @@ Page({
   /**处理播放音乐 */
   tapMusic:function(){
     var backgroundAudioManager = wx.getBackgroundAudioManager();
-    backgroundAudioManager.src = 'http://sc1.111ttt.cn:8282/2018/1/03/13/396131213056.mp3?tflag=1546606800&pin=97bb2268ae26c20fe093fd5b0f04be80';
-    backgroundAudioManager.title='起风了';
+    backgroundAudioManager.src = 'http://sc1.111ttt.cn:8282/2017/1/11/11/304112003137.mp3?tflag=1546606800&pin=97bb2268ae26c20fe093fd5b0f04be80';
+    backgroundAudioManager.title='远走高飞';
   }
 })

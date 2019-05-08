@@ -4,7 +4,7 @@ var articles = [
     author:'王翌宸',
     date: '2019-05-07',
     time: '3天前',
-    title: '我是王翌宸',
+    title: '王翌宸是我',
     img: '/images/swiper/wyc3.jpg',
     desc: '富士山下',
     content:'我是内容1',
