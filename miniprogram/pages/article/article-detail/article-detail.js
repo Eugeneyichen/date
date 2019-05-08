@@ -1,3 +1,4 @@
+var { articles } = require('../../../data/db.js')
 Page({
 
   /**
@@ -12,55 +13,72 @@ Page({
    */
   onLoad: function (options) {
     var articleId = options.articleId;
-    console.log(articleId)
-  },
+    var article = articles[articleId];
+    //处理收藏状态
+    var articles_collection = wx.getStorageSync('articles_collection')
+    var isCollected = false;
+    if (!articles_collection){
+      /**
+       * {
+       *  "0":false,
+       *  "1":true
+       * }
+       */
+      var data = {
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
+      }
+      data[articleId] = false;
+      wx.setStorageSync('articles_collection', data)
+    }else{
+      isCollected = !!articles_collection[articleId]
+    }
+    this.setData({ ...article, isCollected:isCollected})
   },
+  /** 处理收藏*/
+  topCollect:function(){
+    /** 
+    wx.setStorageSync('key1',123)
+    wx.setStorageSync('key2', 'hello')
+    wx.setStorageSync('key3', {
+      nome:'tom'
+      })
+    wx.setStorageSync('key1', 555)
+    console.log(wx.getStorageSync('key1'))
+    console.log(wx.getStorageSync('key2'))
+    console.log(wx.getStorageSync('key3'))
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-    
+    wx.removeStorageSync('key1')
+    wx.clearStorageSync()
+    */
+    var articles_collection = wx.getStorageSync('articles_collection');
+    var isCollected = articles_collection[this.data.articleId];
+    //改变storage里面的数据
+    articles_collection[this.data.articleId] =!isCollected;
+    wx.setStorageSync('articles_collection', articles_collection)
+    //改变视图页面
+    this.setData({
+      isCollected: !isCollected
+    },function(){
+      wx.showToast({
+        title: isCollected ? '取消成功' : '收藏成功',
+      })
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-    
+  /**处理分享 */
+  tapShare:function(){
+    var itemList = ['分享到朋友圈','分享到微博','分享到soul']
+    wx.showActionSheet({
+      itemList: itemList,
+      success:function(res){
+        wx.showToast({
+          title: itemList[res.tapIndex] + '成功',
+        })
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-    
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-    
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-    
+  /**处理播放音乐 */
+  tapMusic:function(){
+    var backgroundAudioManager = wx.getBackgroundAudioManager();
+    backgroundAudioManager.src = 'http://sc1.111ttt.cn:8282/2018/1/03/13/396131213056.mp3?tflag=1546606800&pin=97bb2268ae26c20fe093fd5b0f04be80';
   }
 })
