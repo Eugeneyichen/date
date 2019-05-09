@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    isPlaying:false
   },
 
   /**
@@ -33,6 +33,19 @@ Page({
       isCollected = !!articles_collection[articleId]
     }
     this.setData({ ...article, isCollected:isCollected})
+    //监听音乐相关事件
+    var backgroundAudioManager = wx.getBackgroundAudioManager();
+    backgroundAudioManager.onPlay(function(){
+      this.setData({
+        isPlaying: true
+      })
+    }.bind(this))
+    backgroundAudioManager.onPause(function () {
+      this.setData({
+        isPlaying: false
+      })
+    }.bind(this))
+
   },
   /** 处理收藏*/
   topCollect:function(){
@@ -79,7 +92,19 @@ Page({
   /**处理播放音乐 */
   tapMusic:function(){
     var backgroundAudioManager = wx.getBackgroundAudioManager();
-    backgroundAudioManager.src = 'http://sc1.111ttt.cn:8282/2017/1/11/11/304112003137.mp3?tflag=1546606800&pin=97bb2268ae26c20fe093fd5b0f04be80';
-    backgroundAudioManager.title='远走高飞';
+    var isPlaying = this.data.isPlaying;
+    if(isPlaying){
+      backgroundAudioManager.pause();
+      this.setData({
+        isPlaying: false
+      })
+    }else{
+      var music = articles[this.data.articleId].music;
+      backgroundAudioManager.src = music.src;
+      backgroundAudioManager.title = music.title;
+      this.setData({
+        isPlaying: true
+      })
+    } 
   }
 })

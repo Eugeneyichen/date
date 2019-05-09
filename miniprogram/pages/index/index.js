@@ -4,6 +4,9 @@ const app = getApp()
 
 Page({
   tapMotto:function(){
+    wx.switchTab({
+      url: '/pages/article/article',
+    })
     // console.log('tapMotto..')
     /*
     wx.navigateTo({
@@ -11,9 +14,11 @@ Page({
       url: '/pages/article/article',
     })
     */
+    /*
     wx.redirectTo({
       url: '/pages/article/article',
     })
+    */
   },
   /*
   tapText:function(){

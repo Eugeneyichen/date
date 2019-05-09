@@ -10,7 +10,11 @@ var articles = [
     content:'我是内容1',
     star: 30,
     view: '40',
-    articleId:'0'
+    articleId:'0',
+    music:{
+      src: 'http://sc1.111ttt.cn:8282/2017/1/11/11/304112003137.mp3?tflag=1546606800&pin=97bb2268ae26c20fe093fd5b0f04be80',
+      title: '远走高飞'
+    }
   },
   {
     avatar: '/images/wyc.jpg',
@@ -23,7 +27,11 @@ var articles = [
     content: '我是内容2',
     star: 40,
     view: '50',
-    articleId: '1'
+    articleId: '1',
+    music: {
+      src: 'http://sc1.111ttt.cn:8282/2018/1/03/13/396131227447.mp3?tflag=1546606800&pin=97bb2268ae26c20fe093fd5b0f04be80',
+      title: '红昭愿'
+    }
   }
 ];
 
