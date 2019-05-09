@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box">
+		<p>{{message}}</p>
+		<!-- 直接在输入框改 -->
+		<input type="text" v-model="message"></input>
+		<!-- 写完确定后修改 -->
+		<input type="text" v-model.lazy="message"></input>
+		<!-- 转换为数字 -->
+		<input type="text" v-model.number="message"></input>
+		<!-- 去除空格 -->
+		<input type="text" v-model.trim="message"></input>
+	</div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+	let vm = new Vue({
+		el:'#box',
+		data:{
+			message:'hello 王翌宸'
+		}
+	});
+</script>
+</html>

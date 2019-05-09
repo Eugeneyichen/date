@@ -6,10 +6,10 @@
 </head>
 <body>
 	<div id="box">
-		<p>{{message}}</p>
-		<p v-once>{{message}}</p>
-		<p v-text="message"></p>
-		<p v-html="rowHtml"></p>
+		<input type="text" v-model='score'/>
+		<p>您的分数的是{{score}}</p>
+		<p v-show="score >= 60">及格</p>
+		<p v-show="score < 60">不及格</p>
 	</div>
 </body>
 <script src="js/vue.js"></script>
@@ -17,10 +17,8 @@
 	let vm = new Vue({
 		el:'#box',
 		data:{
-			message:'hello 王翌宸',
-			rowHtml:'<h1>hello 王翌宸</h1>'
-		},
-		
+			score:0
+		}
 	});
 </script>
 </html>
