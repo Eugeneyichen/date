@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box">
+		<p ref="p">{{message}}</p>
+	</div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+	let vm = new Vue({
+		el:'#box',
+		data:{
+			message:'hello 王翌宸'
+		},
+		beforeCreate(){
+			console.log('beforeCreate')
+			console.log('this.message',this.message)//undefined
+			console.log('this.$el',this.$el)//undefined
+			console.log('this.$refs.p',this.$refs.p)//undefined
+		},
+		created(){
+			console.log('created')
+			console.log('this.message',this.message)//hello 王翌宸
+			console.log('this.$el',this.$el)//undefined
+			console.log('this.$refs.p',this.$refs.p)//undefined
+		},
+		beforeMount(){
+			console.log('beforeMount')
+			console.log('this.message',this.message)//hello 王翌宸
+			console.log('this.$el',this.$el)//<div id="box"><p ref="p">{{message}}</p></div> DOM节点
+			console.log('this.$refs.p',this.$refs.p)//undefined
+		},
+		mounted(){
+			console.log('mounted')
+			console.log('this.message',this.message)//hello 王翌宸
+			console.log('this.$el',this.$el)//<div id="box"><p ref="p">{{message}}</p></div> DOM节点
+			console.log('this.$refs.p',this.$refs.p)//<p>hello 王翌宸</p>
+		},
+		beforeUpdate(){
+			console.log('beforeUpdate')
+		},
+		updated(){
+			console.log('updated')
+		},
+		beforeDestroy(){
+			console.log('beforeDestroy')
+		},
+		destroyed(){
+			console.log('destroyed')
+		}
+	});
+</script>
+</html>

@@ -6,8 +6,10 @@
 </head>
 <body>
 	<div id="box">
-		<p ref='s'>{{message}}</p>
-		
+		<p>{{message}}</p>
+		<p v-once>{{message}}</p>
+		<p v-text="message"></p>
+		<p v-html="rowHtml"></p>
 	</div>
 </body>
 <script src="js/vue.js"></script>
@@ -16,17 +18,9 @@
 		el:'#box',
 		data:{
 			message:'hello 王翌宸',
+			rowHtml:'<h1>hello 王翌宸</h1>'
 		},
 		
 	});
-	console.log(vm);
-	console.log(vm.message);
-	console.log(vm.$data.message);
-	console.log(vm.$el);
-	console.log(vm.$el === document.getElementById('box'));
-	console.log(vm.$refs.s);
-	vm.$watch("message",function(){
-		console.log('lkjhg')
-	})
 </script>
 </html>
