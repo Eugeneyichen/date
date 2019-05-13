@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.large{
+			width: 500px;
+			height: 500px;
+			margin: 100px auto;
+			border:1px solid #f67;
+			background-color: gray;
+		}
+		.big{
+			width: 300px;
+			height: 300px;
+			margin: 50px auto;
+			border:1px solid #f67;
+			background-color: yellow;
+		}
+		.small{
+			width: 100px;
+			height: 100px;
+			margin: 50px auto;
+			border:1px solid #f67;
+			background-color: pink;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<div class="large" @click='clickLG()'>
+			<div class="big" @click='clickBG()'>
+				<div class="small" @click='clickSM("hi",$event)'>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</body>
+<script src="js/vue.js"></script>
+<script>
+	let vm = new Vue({
+		el:'#box',
+		data:{
+			
+		},
+		methods:{
+			clickSM(msg,event){
+				event.stopPropagation()
+				console.log('clickSM')
+			},
+			clickBG(){
+				console.log('clickBG')
+			},
+			clickLG(){
+				console.log('clickLG')
+			}
+		}
+	});
+</script>
+</html>

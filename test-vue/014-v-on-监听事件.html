@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	
+</head>
+<body>
+	<div id="box">
+		<button v-on:click="count++">我被点了{{count}}次</button>
+		<button v-on:click="calculate">我被点了{{count}}次</button>
+		<button v-on:click="calculate()">我被点了{{count}}次</button>
+		<button v-on:click="say('hi')">say</button>
+		<button @click="say('sang')">sang</button>
+	</div>
+	
+</body>
+<script src="js/vue.js"></script>
+<script>
+	let vm = new Vue({
+		el:'#box',
+		data:{
+			count:0
+		},
+		methods:{
+			calculate(){
+				this.count++
+			},
+			say(msg){
+				alert(msg)
+			}
+		}
+	});
+</script>
+</html>

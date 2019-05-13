@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box">
+		<a @click.prevent="gWB()" href="https://weibo.com/5283632309/profile?topnav=1&wvr=6">去微博	</a>
+	</div>
+	
+</body>
+<script src="js/vue.js"></script>
+<script>
+	let vm = new Vue({
+		el:'#box',
+		data:{
+			
+		},
+		methods:{
+			gWB(){
+				console.log('go wei bo .....')	
+			}
+		}
+	});
+</script>
+</html>

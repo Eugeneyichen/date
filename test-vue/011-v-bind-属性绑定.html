@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="box">
+		<a href="https://weibo.com/5283632309/profile?topnav=1&wvr=6">王翌宸-</a>
+		<!--
+			错误写法
+		<a href="{{taobaoUrl}}">淘宝</a>
+		-->
+		<a v-bind:href="taobaoUrl">淘宝</a>
+		<a :href="baiduUrl">百度</a><!--简写模式-->
+	</div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+	let vm = new Vue({
+		el:'#box',
+		data:{
+			taobaoUrl:'https://www.taobao.com',
+			baiduUrl:'https://www.baidu.com'
+		}
+	});
+</script>
+</html>

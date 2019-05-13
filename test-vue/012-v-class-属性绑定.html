@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;	
+		}
+		.active{
+			background: #e5ff6a;
+		}
+		.error{
+			color: #de2a11;
+		}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<p>我是</p>
+		<p class="active error">王翌宸</p>
+		<p v-bind:class="{active:true}">王翌宸</p>
+		<p :class="{active:true}">王翌宸</p>
+		<p :class="{active:isActive,error:hasError}">王翌宸</p>
+		<p :class="{active:isActive}" class="error">王翌宸</p>
+		<p :class="['active','error']">jbjkgjk</p>
+		<p :class="[isActive ? 'active' : '','error']">jbjkgjk</p>
+		<p :class="classObj">jbjkgjk</p>
+		<p :class="classArr">jbjkgjk</p>
+	</div>
+	
+</body>
+<script src="js/vue.js"></script>
+<script>
+	let vm = new Vue({
+		el:'#box',
+		data:{
+			isActive:true,
+			hasError:false,
+			classObj:{
+				active:false,
+				error:true
+			},
+			classArr:[
+				'active','error'
+			]
+		}
+	});
+</script>
+</html>
