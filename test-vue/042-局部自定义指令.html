@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<input type="text">
+	</div>
+	<div id="app1">
+		<input type="text" v-focus>
+	</div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+	
+
+	let vm = new Vue({
+		el:'#app',
+		data:{
+			
+		}
+	});
+	let vm1 = new Vue({
+		el:'#app1',
+		data:{
+			
+		},
+		directives:{
+			//注册局部指令 `v-focus`
+			'focus':{
+				inserted:(el)=>{
+					el.focus();
+				}				
+			}
+		}
+	});
+</script>
+</html>
