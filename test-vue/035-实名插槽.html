@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app">
+		<layout>
+			<div slot='focus'>我是你爸爸</div>
+			<div slot='content'>我是你爷爷</div>
+		</layout>
+	</div>
+	<template id="layout">
+		<div>
+			<nav>我是顶部</nav>
+			<!-- <div class="content">我是内容</div> -->
+			<slot name="focus">我是焦点插槽</slot>
+			<slot name="content">我是内容插槽</slot>
+			<footer>我是底部</footer>
+		</div>
+	</template>
+</body>
+<script src="js/vue.js"></script>
+<script>
+	Vue.component('layout',{
+		template:'#layout'
+	})
+	let vm = new Vue({
+		el:'#app',
+		data:{
+			
+		},
+	});
+</script>
+</html>

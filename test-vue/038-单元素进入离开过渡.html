@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		/*
+		.ccc-enter-active, .ccc-leave-active {
+		  transition: opacity .5s;
+		}
+		.ccc-enter, .ccc-leave-to {
+		  opacity: 0;
+		}
+		*/
+		.ccc-enter-active {
+		  animation: ccc-in .5s;
+		}
+		.ccc-leave-active {
+		  animation: ccc-in .5s reverse;
+		}
+		@keyframes ccc-in {
+		  0% {
+		    transform: scale(0);
+		  }
+		  50% {
+		    transform: scale(1.5);
+		  }
+		  100% {
+		    transform: scale(1);
+		  }
+		}
+	</style>
+</head>
+<body>
+	<div id="app">
+		<button @click="show = !show">切换</button>
+		<transition name="ccc" appear>
+			<p v-if="show">我是段落</p>
+		</transition>
+	</div>
+</body>
+<script src="js/vue.js"></script>
+<script>
+	let vm = new Vue({
+		el:'#app',
+		data:{
+			show:true
+		}
+	});
+</script>
+</html>
