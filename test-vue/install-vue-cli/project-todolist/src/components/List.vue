@@ -3,6 +3,8 @@
 		<Item 
 			v-for="(todo,index) in todos"
 			:todo="todo"
+			:delTodo="delTodo"
+			:index="index"
 		/>
 	</div>
 </template>
@@ -11,7 +13,8 @@
 	export default {
 		name:'List',
 		props:{
-			todos:Array
+			todos:Array,
+			delTodo:Function
 		},
 		components:{
 			Item

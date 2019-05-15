@@ -3,8 +3,8 @@
 	<div class="App" id="app">
 		<h3>ToDo List</h3>
 		<!--2.3使用组件-->
-		<Header />
-		<List :todos="todos" />
+		<Header :addTodo="addTodo" />
+		<List :todos="todos" :delTodo="delTodo" />
 		<Footer />
 	</div>
 </template>
@@ -30,6 +30,14 @@
 					{task:'学习',done:true},
 					{task:'正在',done:true},
 				]
+			}
+		},
+		methods:{
+			addTodo(todo){
+				this.todos.unshift(todo)
+			},
+			delTodo(index){
+				this.todos.splice(index,1)
 			}
 		}
 	}
