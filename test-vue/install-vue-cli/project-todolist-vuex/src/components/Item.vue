@@ -20,7 +20,6 @@
 		name:'Item',
 		props:{
 			todo:Object,
-			delTodo:Function,
 			index:Number
 		},
 		data(){
@@ -36,7 +35,8 @@
 			},
 			handleDel(){
 				if(window.confirm('你确定要删除'+this.todo.task+'吗？')){
-					this.delTodo(this.index)
+					// this.delTodo(this.index)
+					this.$store.dispatch('delTodo',this.index)
 				}
 			}
 		}
