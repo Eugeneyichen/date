@@ -15,7 +15,6 @@ import {
 export default {
 	async [GET_HOME_PRODUCTS]({commit}){
 		const products = await getHomeProducts()
-		console.log(products)
 		commit(GET_HOME_PRODUCTS,{homeProducts:products})
 	}
 }
