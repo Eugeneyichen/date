@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		ul>li{
+			/*background: #f67*/
+		}
+		ul li{
+			font-size: 24px;
+		}
+		p.txt{
+			color: red;
+		}
+		.pp,.ll{
+			color: #f67;
+		}
+		li+.li2{
+			color: #ff6700;
+		}
+		/*li:nth-child(3n+0){
+			background: #f67;
+		}*/
+		li:nth-last-of-type(3){
+			background: #ff6700;
+		}
+		a:link{
+			color: gray;
+		}
+		a:visited{
+			color: purple;
+		}
+		a:hover{
+			color: green;
+		}
+		a:active{
+			color: yellow;
+		}
+		a:after{
+			content:'aaa';
+		}
+		a:before{
+			content:'aaa';
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>2</li>
+		<li>3</li>
+		<li>4</li>
+		<li>5</li>
+		<li>6</li>
+		<li>7</li>
+		<li>8</li>
+	</ul>
+	<div class="txt">
+		我是div
+	</div>
+	<p class="txt">我是p1</p>
+	<span class="txt">我是span</span>
+	<p class="pp">我是p2</p>
+	<p class="ll">我是p2</p>
+
+	<a href="">好爽</a>
+</body>
+</html>
